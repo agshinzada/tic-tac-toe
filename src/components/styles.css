@@ -1,0 +1,19 @@
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+.box {
+  width: 150px;
+  height: 150px;
+  background-color: rgb(78, 76, 76);
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box img {
+  width: 100px;
+  height: auto;
+}
