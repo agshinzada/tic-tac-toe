@@ -11,6 +11,7 @@ function App() {
   const [lock, setLock] = useState(true);
   const [currentUser, setCurrentUser] = useState(circleUser);
   const refStatus = useRef();
+  const boardRef = useRef();
 
   function handleBox(e, num) {
     if (lock) {
@@ -63,9 +64,26 @@ function App() {
 
   function startGame() {
     try {
+      if (lock) {
+        setLock(false);
+        setCurrentUser(circleUser);
+      } else {
+        alert("Please reset board!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  function resetGame() {
+    try {
+      for (let i = 0; i < boardRef.current.children.length; i++) {
+        for (let m = 0; m < boardRef.current.children[i].children.length; m++) {
+          boardRef.current.children[i].children[m].innerHTML = "";
+        }
+      }
+      arr = ["", "", "", "", "", "", "", "", ""];
       setLock(false);
-      setCurrentUser(circleUser);
-      console.log(arr);
     } catch (error) {
       console.log(error);
     }
@@ -110,6 +128,7 @@ function App() {
             type="button"
             disabled={circleUser && xUser ? false : true}
             onClick={startGame}
+            className="btn btn-start"
           >
             Start
           </button>
@@ -118,7 +137,7 @@ function App() {
       </header>
 
       <main>
-        <div className="board">
+        <div className="board" ref={boardRef}>
           <TicTacRow keyVal={1}>
             <TicTacBox handleBox={(e) => handleBox(e, 0)} keyVal={0} />
             <TicTacBox handleBox={(e) => handleBox(e, 1)} keyVal={1} />
@@ -134,6 +153,9 @@ function App() {
             <TicTacBox handleBox={(e) => handleBox(e, 7)} keyVal={7} />
             <TicTacBox handleBox={(e) => handleBox(e, 8)} keyVal={8} />
           </TicTacRow>
+          <button type="button" onClick={resetGame} className="btn btn-reset">
+            Reset
+          </button>
         </div>
       </main>
     </div>

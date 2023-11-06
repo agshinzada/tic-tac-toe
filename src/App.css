@@ -23,14 +23,30 @@
   gap: 40px;
 }
 
-.header button {
+.btn {
   border: none;
-  background-color: rgb(38, 38, 202);
   border-radius: 7px;
   padding: 10px;
   color: aliceblue;
-  width: 100%;
   cursor: pointer;
+}
+
+.btn-start {
+  background-color: rgb(38, 38, 202);
+  width: 100%;
+}
+
+.btn-start:hover {
+  background-color: rgb(36, 36, 177);
+}
+
+.btn-reset {
+  background-color: rgb(145, 145, 197);
+  width: 100%;
+}
+
+.btn-reset:hover {
+  background-color: rgb(126, 126, 172);
 }
 
 .header button:disabled {
@@ -62,4 +78,15 @@
 .display-user {
   color: aqua;
   font-size: 18px;
+}
+
+@media only screen and (max-width: 1068px) {
+  .app {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
 }
